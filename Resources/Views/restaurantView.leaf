@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Model</title>
+        <!-- add bootstrap which is a css framework that makes our view look a bit nicer. -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="container">
+        <h1 class="mt-3"> Restaurant List </h1>
+
+        <form method="POST" action="/restaurants">
+            <div class="input-group">
+                <input type="text" name="name" class="form-control" placeholder="Enter restaurant">
+
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">
+                        Create
+                    </button>
+                </div>
+
+            </div>
+        </form>
+
+        #for(restaurant in restaurantList) {
+            <p class="mb-0">
+                #(restaurant.name)
+            </p>
+        }
+
+    </body>
+</html>
+
