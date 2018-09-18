@@ -5,10 +5,10 @@
 //  Created by Alper Akinci on 14/09/2018.
 //
 
-import FluentSQLite
+import FluentPostgreSQL
 import Vapor
 
-final class Restaurant: SQLiteModel {
+final class Restaurant: PostgreSQLModel {
     var id: Int?
     var name: String
 

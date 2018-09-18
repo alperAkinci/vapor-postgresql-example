@@ -1,6 +1,6 @@
 import Vapor
 import Leaf
-import FluentSQLite
+import FluentPostgreSQL
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
 
@@ -14,19 +14,31 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     try services.register(leafProvider)
 
     // Register FluentSQLite provider
-    try services.register(FluentSQLiteProvider())
+    try services.register(FluentPostgreSQLProvider())
 
-    //initiate a database service
+    let posgresqlConfig: PostgreSQLDatabaseConfig
+
+    if let url = Environment.get("DATABASE_URL"), let config = PostgreSQLDatabaseConfig(url: url) {
+        posgresqlConfig = config
+    }else {
+        posgresqlConfig = PostgreSQLDatabaseConfig(
+            hostname: "127.0.0.1",
+            port: 5433,
+            username: "alperakinci",
+            database: "czechworddb",
+            password: nil
+        )
+    }
+
+    let postgresql = PostgreSQLDatabase(config: posgresqlConfig)
     var databases = DatabasesConfig()
-    //add a SQLiteDatabase to it
-    try databases.add(database: SQLiteDatabase(storage: .memory), as: .sqlite)
-    //and register that database service
-    services.register(databases)
+    databases.add(database: postgresql, as: .psql)
+    services.register(posgresqlConfig)
 
     config.prefer(LeafRenderer.self, for: ViewRenderer.self)
 
     // register a migration service in order to introduce our Model to our database
     var migrations = MigrationConfig()
-    migrations.add(model: Restaurant.self, database: .sqlite)
+    migrations.add(model: Restaurant.self, database: .psql)
     services.register(migrations)
 }
