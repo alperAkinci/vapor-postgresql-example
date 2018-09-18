@@ -17,7 +17,7 @@ public func routes(_ router: Router) throws {
     // (If that something is a Future you use flatMap
     // and if it is “normal” data thus not a Future you use map.)
 
-    let restaurantController = RestaurantController()
-    router.get("restaurants", use: restaurantController.list)
-    router.post("restaurants", use: restaurantController.create)
+    let controller = Controller()
+    router.get("test", use: controller.list)
+    router.post("test", use: controller.create)
 }

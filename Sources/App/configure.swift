@@ -39,6 +39,6 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
 
     // register a migration service in order to introduce our Model to our database
     var migrations = MigrationConfig()
-    migrations.add(model: Restaurant.self, database: .psql)
+    migrations.add(model: Word.self, database: .psql)
     services.register(migrations)
 }

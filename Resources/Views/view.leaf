@@ -6,24 +6,24 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body class="container">
-        <h1 class="mt-3"> Restaurant List </h1>
-
-        <form method="POST" action="/restaurants">
+        <h1 class="mt-3"> My Czech Words 🇨🇿 </h1>
+        <h5 class="mt-3"> List of czech words i learned</h5>
+        <form method="POST" action="/test">
             <div class="input-group">
-                <input type="text" name="name" class="form-control" placeholder="Enter restaurant">
+                <input type="text" name="name" class="form-control" placeholder="Enter czech word">
 
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit">
-                        Create
+                        Add
                     </button>
                 </div>
 
             </div>
         </form>
 
-        #for(restaurant in restaurantList) {
+        #for(word in wordList) {
             <p class="mb-0">
-                #(restaurant.name)
+                #(word.name)
             </p>
         }
 

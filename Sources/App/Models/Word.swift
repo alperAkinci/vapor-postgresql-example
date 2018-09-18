@@ -8,7 +8,7 @@
 import FluentPostgreSQL
 import Vapor
 
-final class Restaurant: PostgreSQLModel {
+final class Word: PostgreSQLModel {
     var id: Int?
     var name: String
 
@@ -19,7 +19,7 @@ final class Restaurant: PostgreSQLModel {
 }
 
 // The conformance to Content makes it possible so our User can convert into for example JSON using Codable if we would return him in a route. Or so he can convert into TemplateData which is used within a Leaf view. And due to Codable that happens automagically.
-extension Restaurant: Content {}
+extension Word: Content {}
 
 // Conforming to Migration is needed so Fluent can use Codable to create the best possible database table schema and also so we are able to add it to our migration service in our configure.swift
-extension Restaurant: Migration {}
+extension Word: Migration {}
